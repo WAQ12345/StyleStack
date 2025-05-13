@@ -1,0 +1,143 @@
+@use "sass:map";
+:root {
+  // 颜色系统
+  --color-primary: #409EFF;
+  --color-success: #67C23A;
+  --color-warning: #E6A23C;
+  --color-danger: #F56C6C;
+  --color-text: #333;
+  --color-border: #dcdfe6;
+  --color-background: #f7f8fa;
+  --color-surface: #fff;
+  --color-muted: #999;
+
+  // 间距系统
+  --space-base: 4px;
+  --space-0: 0;
+  --space-1: calc(var(--space-base) * 0.5); // 2px
+  --space-2: var(--space-base); // 4px
+  --space-3: calc(var(--space-base) * 1.5); // 6px
+  --space-4: calc(var(--space-base) * 2); // 8px
+  --space-5: calc(var(--space-base) * 3); // 12px
+  --space-6: calc(var(--space-base) * 4); // 16px
+
+  // 布局尺寸
+  --sidebar-width: 200px;
+  --login-container-width: 350px;
+  --card-width: 360px;
+  --card-height: 260px;
+
+  // 圆角
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  // 阴影
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+// 间距系统扩展
+@each $size in (0, 1, 2, 3, 4, 5, 6) {
+  .m-#{$size} {
+    margin: var(--space-#{$size});
+  }
+
+  .p-#{$size} {
+    padding: var(--space-#{$size});
+  }
+
+  @each $direction in (t, b, l, r) {
+    .m#{$direction}-#{$size} {
+      margin-#{map.get((t: top, b: bottom, l: left, r: right), $direction)}: var(--space-#{$size});
+    }
+    .p#{$direction}-#{$size} {
+      padding-#{map.get((t: top, b: bottom, l: left, r: right), $direction)}: var(--space-#{$size});
+    }
+  }
+}
+
+// Flex布局系统
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex {
+  display: flex;
+
+  &-center {
+    @include flex-center;
+  }
+
+  &-column {
+    flex-direction: column;
+  }
+
+  &-wrap {
+    flex-wrap: wrap;
+  }
+
+  &-between {
+    justify-content: space-between;
+  }
+}
+
+// 按钮组件
+.button {
+  --button-bg: transparent;
+  --button-color: var(--color-primary);
+
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--button-bg);
+  color: var(--button-color);
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &--primary {
+    --button-bg: var(--color-primary);
+    --button-color: #fff;
+    border-color: var(--color-primary);
+  }
+}
+
+// 输入框组件
+.input {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.2s;
+
+  &:focus {
+    border-color: var(--color-primary);
+    outline: none;
+  }
+}
+
+// 响应式断点
+$breakpoints: (
+  mobile: 768px,
+  tablet: 1024px,
+  desktop: 1280px
+);
+
+@mixin respond-to($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (max-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+.hidden {
+  &-mobile {
+    @include respond-to(mobile) {
+      display: none !important;
+    }
+  }
+}
