@@ -1,9 +1,11 @@
 <script setup lang="ts">
-
+import ColorfulLove from './components/ColorfulLove.vue';
+import StickyBalls from './components/StickyBalls.vue';
 </script>
 <template>
   <div class="navbar-container">
-   
+    <ColorfulLove />
+    <StickyBalls />
   </div>
 </template>
 

@@ -15,7 +15,7 @@ const routes = [
   },
   { path: "/input", component: InputStyle },
   { path: "/card", component: CardStyle },
-  // { path: '/loading', component: LoadingStyle },
+  { path: '/loading', component: ()  => import('@/components/LoadingStyle/LoadingStyle.vue') },
   { path: "/login", component: LoginStyle },
   // { path: '/slider', component: SliderStyle },
   {
