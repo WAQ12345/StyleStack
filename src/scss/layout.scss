@@ -26,7 +26,6 @@
   color: var(--primary-color);
 }
 .content-area {
-  flex: 1;
   padding: 32px;
   overflow: auto;
 }
@@ -46,7 +45,7 @@
   justify-content: center;
   height: 260px;
   width: 360px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   position: relative;
 }
 .card-size-info {

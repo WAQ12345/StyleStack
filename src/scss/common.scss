@@ -1,96 +1,274 @@
 @use "sass:map";
-:root {
-  // 颜色系统
-  --color-primary: #409EFF;
-  --color-success: #67C23A;
-  --color-warning: #E6A23C;
-  --color-danger: #F56C6C;
-  --color-text: #333;
-  --color-border: #dcdfe6;
-  --color-background: #f7f8fa;
-  --color-surface: #fff;
-  --color-muted: #999;
 
-  // 间距系统
+/* ========================
+   基础变量系统
+   ======================== */
+
+:root {
+  /* ----------
+     颜色系统
+     ---------- */
+  // 品牌色
+  --color-primary: #409eff; // 主色，用于主要操作按钮、重要高亮
+  --color-success: #67c23a; // 成功状态，用于操作成功提示
+  --color-warning: #e6a23c; // 警告状态，用于需要警示的操作
+  --color-danger: #f56c6c; // 危险状态，用于危险操作/错误提示
+  --color-info: #909399; // 信息色，用于普通信息提示
+  --color-darkBlue: #004080;
+  // 中性色
+  --color-text: #333; // 主要文本颜色
+  --color-text-secondary: #666; // 次要文本颜色
+  --color-border: #dcdfe6; // 边框颜色
+  --color-background: #f7f8fa; // 页面背景色
+  --color-surface: #fff; // 组件背景色（卡片、表单等）
+  --color-muted: #999; // 禁用/弱化文本颜色
+
+  /* ----------
+     间距系统（基准4px）
+     ---------- */
   --space-base: 4px;
-  --space-0: 0;
+  --space-0: 0; // 0
   --space-1: calc(var(--space-base) * 0.5); // 2px
   --space-2: var(--space-base); // 4px
   --space-3: calc(var(--space-base) * 1.5); // 6px
   --space-4: calc(var(--space-base) * 2); // 8px
   --space-5: calc(var(--space-base) * 3); // 12px
   --space-6: calc(var(--space-base) * 4); // 16px
+  --space-7: calc(var(--space-base) * 5); // 20px
+  --space-8: calc(var(--space-base) * 6); // 24px
 
-  // 布局尺寸
-  --sidebar-width: 200px;
-  --login-container-width: 350px;
-  --card-width: 360px;
-  --card-height: 260px;
+  /* ----------
+     布局尺寸
+     ---------- */
+  --sidebar-width: 200px; // 侧边栏宽度
+  --header-height: 60px; // 顶部导航高度
+  --login-container-width: 350px; // 登录框宽度
+  --card-width: 360px; // 卡片组件宽度
+  --card-height: 260px; // 卡片组件高度
 
-  // 圆角
-  --radius-sm: 4px;
-  --radius-md: 8px;
+  /* ----------
+     文本系统
+     ---------- */
+  --text-xs: 0.75rem; // 12px 辅助文本
+  --text-sm: 0.875rem; // 14px 正文小
+  --text-md: 1rem; // 16px 正文标准
+  --text-lg: 1.125rem; // 18px 正文大
+  --text-xl: 1.25rem; // 20px 标题小
+  --text-xxl: 1.5rem; // 24px 标题中
 
-  // 阴影
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* ----------
+     圆角系统
+     ---------- */
+  --radius-sm: 4px; // 小圆角，用于按钮等
+  --radius-md: 8px; // 中圆角，用于卡片等
+  --radius-lg: 12px; // 大圆角，用于特殊场景
+
+  /* ----------
+     阴影系统
+     ---------- */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1); // 浅阴影，用于悬浮按钮
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1); // 中阴影，用于卡片悬浮
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.15); // 深阴影，用于模态框
 }
 
-// 间距系统扩展
-@each $size in (0, 1, 2, 3, 4, 5, 6) {
+/* ========================
+   实用工具类
+   ======================== */
+
+/* ----------
+   间距系统
+   ---------- */
+@each $size in (0, 1, 2, 3, 4, 5, 6, 7, 8) {
+  // 外边距
   .m-#{$size} {
     margin: var(--space-#{$size});
   }
-
+  // 内边距
   .p-#{$size} {
     padding: var(--space-#{$size});
   }
 
-  @each $direction in (t, b, l, r) {
-    .m#{$direction}-#{$size} {
-      margin-#{map.get((t: top, b: bottom, l: left, r: right), $direction)}: var(--space-#{$size});
-    }
-    .p#{$direction}-#{$size} {
-      padding-#{map.get((t: top, b: bottom, l: left, r: right), $direction)}: var(--space-#{$size});
+  // 方向缩写映射
+  $directions: (
+    t: (
+      top,
+    ),
+    b: (
+      bottom,
+    ),
+    l: (
+      left,
+    ),
+    r: (
+      right,
+    ),
+    x: (
+      left,
+      right,
+    ),
+    y: (
+      top,
+      bottom,
+    ),
+  );
+
+  @each $dir, $props in $directions {
+    @each $prop in $props {
+      // 生成边距方向类（如mt-2）
+      .m#{$dir}-#{$size} {
+        margin-#{$prop}: var(--space-#{$size});
+      }
+      // 生成内边距方向类（如pt-2）
+      .p#{$dir}-#{$size} {
+        padding-#{$prop}: var(--space-#{$size});
+      }
     }
   }
 }
 
-// Flex布局系统
+/* ----------
+   Flex布局系统
+   ---------- */
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .flex {
   display: flex;
 
+  // 主轴对齐方式
+  &-start {
+    justify-content: flex-start;
+  }
+  &-end {
+    justify-content: flex-end;
+  }
   &-center {
-    @include flex-center;
+    justify-content: center;
   }
-
-  &-column {
-    flex-direction: column;
-  }
-
-  &-wrap {
-    flex-wrap: wrap;
-  }
-
   &-between {
     justify-content: space-between;
   }
+  &-around {
+    justify-content: space-around;
+  }
+
+  // 交叉轴对齐
+  &-align-start {
+    align-items: flex-start;
+  }
+  &-align-end {
+    align-items: flex-end;
+  }
+  &-align-center {
+    align-items: center;
+  }
+  &-align-stretch {
+    align-items: stretch;
+  }
+
+  // 排列方向
+  &-column {
+    flex-direction: column;
+  }
+  &-row-reverse {
+    flex-direction: row-reverse;
+  }
+  &-column-reverse {
+    flex-direction: column-reverse;
+  }
+
+  // 换行
+  &-wrap {
+    flex-wrap: wrap;
+  }
+  &-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  // 复合布局
+  &-center-all {
+    @include flex-center;
+    &-column {
+      @include flex-center;
+      flex-direction: column;
+    }
+  }
 }
 
-// 按钮组件
+/* ----------
+   常用工具类
+   ---------- */
+// 宽度
+.w-full {
+  width: 100%;
+}
+.w-auto {
+  width: auto;
+}
+
+// 文本
+.text-center {
+  text-align: center;
+}
+.text-bold {
+  font-weight: 700;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+// 定位
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.fixed {
+  position: fixed;
+}
+
+// 显示属性
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+.hidden {
+  display: none !important;
+}
+
+// 溢出处理
+.overflow-auto {
+  overflow: auto;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+
+// 指针样式
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* ========================
+   组件样式
+   ======================== */
+
+/* ----------
+   按钮组件
+   ---------- */
 .button {
   --button-bg: transparent;
   --button-color: var(--color-primary);
+  --button-hover-bg: rgba(var(--color-primary), 0.1);
 
   display: inline-flex;
   align-items: center;
-  padding: var(--space-2) var(--space-4);
+  padding: var(--space-3) var(--space-5);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   background: var(--button-bg);
@@ -98,45 +276,119 @@
   cursor: pointer;
   transition: all 0.2s;
 
+  // 交互状态
+  &:hover:not(:disabled) {
+    background: var(--button-hover-bg);
+    border-color: var(--color-primary);
+  }
+  &:active:not(:disabled) {
+    opacity: 0.8;
+  }
+
+  // 类型变体
   &--primary {
     --button-bg: var(--color-primary);
     --button-color: #fff;
+    --button-hover-bg: rgba(var(--color-primary), 0.8);
     border-color: var(--color-primary);
+  }
+  &--success {
+    @extend .button--primary;
+    --button-bg: var(--color-success);
+    border-color: var(--color-success);
+  }
+
+  // 尺寸变体
+  &--small {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
   }
 }
 
-// 输入框组件
+/* ----------
+   输入框组件
+   ---------- */
 .input {
   width: 100%;
-  padding: var(--space-2) var(--space-3);
+  padding: var(--space-3) var(--space-4);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   transition: border-color 0.2s;
+  background: var(--color-surface);
 
+  // 聚焦状态
   &:focus {
     border-color: var(--color-primary);
     outline: none;
+    box-shadow: 0 0 0 2px rgba(var(--color-primary), 0.2);
+  }
+
+  // 错误状态
+  &.error {
+    border-color: var(--color-danger);
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(var(--color-danger), 0.2);
+    }
   }
 }
 
-// 响应式断点
+/* ========================
+   基础全局样式
+   ======================== */
+* {
+  box-sizing: border-box; // 统一盒模型
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%; // 图片自适应
+  height: auto;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+/* ========================
+   响应式系统
+   ======================== */
 $breakpoints: (
   mobile: 768px,
   tablet: 1024px,
-  desktop: 1280px
+  desktop: 1280px,
 );
 
+// 移动优先媒体查询
 @mixin respond-to($breakpoint) {
   @if map.has-key($breakpoints, $breakpoint) {
-    @media (max-width: map.get($breakpoints, $breakpoint)) {
+    @media (min-width: map.get($breakpoints, $breakpoint)) {
       @content;
     }
   }
 }
 
+// 响应式隐藏类
 .hidden {
   &-mobile {
     @include respond-to(mobile) {
+      display: none !important;
+    }
+  }
+  &-tablet {
+    @include respond-to(tablet) {
       display: none !important;
     }
   }

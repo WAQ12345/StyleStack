@@ -13,7 +13,7 @@ let spanElement: HTMLElement | null = null;
  * 1. 创建入场动画元素
  * 2. 设置初始位置
  * 3. 添加动画类名
- */const handleEnter = (e: MouseEvent) => {
+ */ const handleEnter = (e: MouseEvent) => {
   if (!isIn || !container.value) return;
   // 清理现有动画元素
   if (spanElement) {
@@ -71,7 +71,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="container" class="login-container flex-center flex-column">
+  <div ref="container" class="login-container flex-center-all-column">
     <h1 class="logo">Style Stack</h1>
     <form class="login-form">
       <input type="text" class="form-input" placeholder="Account" />
@@ -84,8 +84,6 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .login-container {
   position: relative;
-  width: 100%; // 改为相对宽度
-  max-width: 350px; // 保持最大宽度限制
   aspect-ratio: 7/9; // 保持350:450的比例（7:9）
   border-radius: 20px;
   background: var(--color-primary);
