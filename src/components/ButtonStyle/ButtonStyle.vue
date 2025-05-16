@@ -15,7 +15,6 @@ import GlowingReflectionButton from './components/GlowingReflectionButton.vue';
 .navbar-container {
   display: flex;
   gap: 3rem;
-  justify-content: center;
   align-items: center;
 }
 </style>

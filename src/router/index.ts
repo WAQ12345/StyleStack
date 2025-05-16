@@ -4,7 +4,6 @@ import CardStyle from "@/components/CardStyle";
 // import LoadingStyle from '@/views/LoadingCase.vue'
 import LoginStyle from "@/components/LoginStyle";
 // import SliderStyle from '@/components/SliderStyle.vue'
-// import AnimationStyle from '@/components/AnimationStyle.vue'
 // import SwitchStyle from '@/components/SwitchStyle.vue'
 // import WebStyle from '@/components/WebStyle.vue'
 
@@ -22,9 +21,10 @@ const routes = [
     path: "/navbar",
     component: () => import("@/components/NavbarStyle/NavbarStyle.vue"),
   },
-  // { path: '/animation', component: AnimationStyle },
+  { path: '/animation',
+     component: ()=>import('@/components/AnimationStyle/AnimationStyle.vue') },
   // { path: '/switch', component: SwitchStyle },
-  // { path: '/web', component: WebStyle },
+  // { path: '/web', component: ()=>import('@/components/WebStyle/WebStyle.vue') },
   // { path: '/', redirect: '/web' }
 ];
 

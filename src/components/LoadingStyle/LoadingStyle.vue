@@ -1,19 +1,23 @@
 <script setup lang="ts">
 import ColorfulLove from './components/ColorfulLove.vue';
 import StickyBalls from './components/StickyBalls.vue';
+import Cyclic from './components/Cyclic.vue';
+import Rhombus from './components/Rhombus.vue';
 </script>
 <template>
   <div class="navbar-container">
     <ColorfulLove />
     <StickyBalls />
+    <Cyclic />
+    <Rhombus />
   </div>
 </template>
 
 <style scoped lang="scss">
 .navbar-container {
+  overflow: hidden;
   display: flex;
   gap: 3rem;
-  justify-content: center;
   align-items: center;
 }
 </style>

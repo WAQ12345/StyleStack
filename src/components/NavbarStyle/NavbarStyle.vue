@@ -21,9 +21,7 @@ import IconHoverNavBar from "./components/IconHoverNavBar.vue";
 .navbar-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 3rem;
-  max-width: 1200px;
   padding: 20px;
 }
 </style>

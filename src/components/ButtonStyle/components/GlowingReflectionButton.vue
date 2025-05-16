@@ -10,7 +10,6 @@ const buttonLabels = ['Likes', 'Follow', 'Comments', 'Favorite', 'Share']
 </template>
 <style lang='scss' scoped>
 .glowing-reflection {
-    width: 100%;
     height: 100%;
 
     a {

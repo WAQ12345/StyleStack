@@ -15,5 +15,6 @@ export default defineConfig({
         additionalData: `@use "@/scss/common" as *;`,
       },
     },
-  }
+  },
+ 
 })

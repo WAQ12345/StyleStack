@@ -51,7 +51,6 @@ library.add(faQq, faWeixin, faWeibo, faTencentWeibo, faTelegram);
 
   // 尺寸约束
   width: var(--card-width);
-  margin: var(--space-6) auto;
 
   &::before {
     // 使用颜色变量
