@@ -5,6 +5,7 @@
 </template>
 <style lang='scss' scoped>
 .spotlight {
+    height: 50px;
     background-color: #222;
 }
 

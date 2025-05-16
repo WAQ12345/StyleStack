@@ -13,7 +13,7 @@ const rhombusItems = [
 </script>
 
 <template>
-    <div class="loading">
+    <div class="rhombus">
         <span v-for="(item, index) in rhombusItems" :key="index" :style="{
             '--c': item.color,
             '--d': item.delay
@@ -21,7 +21,7 @@ const rhombusItems = [
     </div>
 </template>
 <style lang='scss' scoped>
-.loading {
+.rhombus {
     width: 200px;
     height: 200px;
     display: grid;

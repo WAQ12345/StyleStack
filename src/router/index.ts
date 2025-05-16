@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import InputStyle from "@/components/InputStyle";
 import CardStyle from "@/components/CardStyle";
 // import LoadingStyle from '@/views/LoadingCase.vue'
@@ -14,22 +14,24 @@ const routes = [
   },
   { path: "/input", component: InputStyle },
   { path: "/card", component: CardStyle },
-  { path: '/loading', component: ()  => import('@/components/LoadingStyle/LoadingStyle.vue') },
+  { path: '/loading', component: () => import('@/components/LoadingStyle/LoadingStyle.vue') },
   { path: "/login", component: LoginStyle },
   // { path: '/slider', component: SliderStyle },
   {
     path: "/navbar",
     component: () => import("@/components/NavbarStyle/NavbarStyle.vue"),
   },
-  { path: '/animation',
-     component: ()=>import('@/components/AnimationStyle/AnimationStyle.vue') },
+  {
+    path: '/animation',
+    component: () => import('@/components/AnimationStyle/AnimationStyle.vue')
+  },
   // { path: '/switch', component: SwitchStyle },
   // { path: '/web', component: ()=>import('@/components/WebStyle/WebStyle.vue') },
   // { path: '/', redirect: '/web' }
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 });
 

@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import Spotlights from './components/Spotlights.vue';
+import Splinter from './components/Splinter.vue'
 </script>
 <template>
     <div class="navbar-container">
         <Spotlights />
+        <Splinter />
     </div>
 </template>
 
@@ -11,9 +13,7 @@ import Spotlights from './components/Spotlights.vue';
 .navbar-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 3rem;
-    max-width: 1200px;
     padding: 20px;
 }
 </style>
