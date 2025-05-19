@@ -3,6 +3,7 @@ import GlassesButton from './components/GlassesButton.vue';
 import FlowingLightButton from './components/FlowingLightButton.vue'
 import GlowingReflectionButton from './components/GlowingReflectionButton.vue';
 import SimpleButton from './components/SimpleButton.vue';
+import ShareChangeButton from './components/ShareChangeButton.vue';
 </script>
 <template>
   <div class="navbar-container">
@@ -10,6 +11,7 @@ import SimpleButton from './components/SimpleButton.vue';
     <FlowingLightButton />
     <GlowingReflectionButton />
     <SimpleButton />
+    <ShareChangeButton />
   </div>
 </template>
 

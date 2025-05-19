@@ -20,31 +20,31 @@ library.add(faHome, faComment, faEnvelope, faHeart, faUser);
       <input type="radio" name="tab" id="heart" />
       <input type="radio" name="tab" id="user" />
       <label for="home" class="home">
-        <a href="#">
+        <a href="javascript:;">
           <FontAwesomeIcon :icon="faHome" />
           <span>HOME</span>
         </a>
       </label>
       <label for="comment" class="comment">
-        <a href="#">
+        <a href="javascript:;">
           <FontAwesomeIcon :icon="faComment" />
           <span>COMMENT</span>
         </a>
       </label>
       <label for="envelope" class="envelope">
-        <a href="#">
+        <a href="javascript:;">
           <FontAwesomeIcon :icon="faEnvelope" />
           <span>ENVELOPE</span>
         </a>
       </label>
       <label for="heart" class="heart">
-        <a href="#">
+        <a href="javascript:;">
           <FontAwesomeIcon :icon="faHeart" />
           <span>HEART</span>
         </a>
       </label>
       <label for="user" class="user">
-        <a href="#">
+        <a href="javascript:;">
           <FontAwesomeIcon :icon="faUser" />
           <span>USER</span>
         </a>
