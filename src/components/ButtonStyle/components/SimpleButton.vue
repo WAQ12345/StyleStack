@@ -29,7 +29,6 @@ library.add(faQq, faWeixin, faWeibo, faRenren)
     height: 100px;
     line-height: 100px;
     text-align: center;
-    margin: 0 16px;
     display: inline-block;
     position: relative;
     transition: 0.5s linear;
